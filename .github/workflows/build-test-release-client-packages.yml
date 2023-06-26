@@ -45,11 +45,11 @@ jobs:
 # We probably should loop over the set {rpm,deb,osxpkg} to create packages, but
 # it will make debugging more annoying.
 
-      - name: Build RPM package
-        uses: bpicode/github-action-fpm@e76c0e2166030f4691d641a700b16958c7d12f5d # v0.9.2
-        with:
-          fpm_args: "etc"
-          fpm_opts: "--debug -n cvmfs-config-nessi -v ${{ steps.get_version.outputs.version }} -t rpm -a all -s dir -C ./package --description 'CVMFS configuration package for NESSI.'"
+      # - name: Build RPM package
+      #   uses: bpicode/github-action-fpm@e76c0e2166030f4691d641a700b16958c7d12f5d # v0.9.2
+      #   with:
+      #     fpm_args: "etc"
+      #     fpm_opts: "--debug -n cvmfs-config-nessi -v ${{ steps.get_version.outputs.version }} -t rpm -a all -s dir -C ./package --description 'CVMFS configuration package for NESSI.'"
 
       - name: Build Deb package
         uses: bpicode/github-action-fpm@e76c0e2166030f4691d641a700b16958c7d12f5d # v0.9.2
@@ -155,44 +155,44 @@ jobs:
       - name: Test repository access
         run: ls /cvmfs/pilot.nessi.no/
 
-  test-rpm-package:
-    needs: build-linux-packages
-    runs-on: ubuntu-latest
-    container: 
-      image: centos:centos7
-      options: --device /dev/fuse --privileged
-
-    steps:
-      - name: Download and install CVMFS client
-        run: yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
-
-      - name: Install CVMFS client
-        run: yum install -y cvmfs
-
-      - name: Download cvmfs-config-nessi package
-        uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7 # v3.0.1
-        with:
-          name: linux_packages
-
-      - name: Find filename of package
-        id: find_filename
-        shell: bash
-        run: |
-          rpmfile="$(find . -name cvmfs-config-nessi*.rpm)"
-          echo ::set-output name=rpmfile::${rpmfile}
-
-      - name: Install package
-        run: rpm -i ./${{ steps.find_filename.outputs.rpmfile }}
-
-      - name: Add local CVMFS configuration (/etc/cvmfs/default.local)
-        run: echo "CVMFS_CLIENT_PROFILE=single" | tee /etc/cvmfs/default.local
-
-      - name: Mount the repositories
-        #run: cvmfs_config setup
-        run: mkdir -p /cvmfs/pilot.nessi.no && mount -t cvmfs pilot.nessi.no /cvmfs/pilot.nessi.no
-
-      - name: Test repository access
-        run: ls /cvmfs/pilot.nessi.no/
+#  test-rpm-package:
+#    needs: build-linux-packages
+#    runs-on: ubuntu-latest
+#    container: 
+#      image: centos:centos7
+#      options: --device /dev/fuse --privileged
+#
+#    steps:
+#      - name: Download and install CVMFS client
+#        run: yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
+#
+#      - name: Install CVMFS client
+#        run: yum install -y cvmfs
+#
+#      - name: Download cvmfs-config-nessi package
+#        uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7 # v3.0.1
+#        with:
+#          name: linux_packages
+#
+#      - name: Find filename of package
+#        id: find_filename
+#        shell: bash
+#        run: |
+#          rpmfile="$(find . -name cvmfs-config-nessi*.rpm)"
+#          echo ::set-output name=rpmfile::${rpmfile}
+#
+#      - name: Install package
+#        run: rpm -i ./${{ steps.find_filename.outputs.rpmfile }}
+#
+#      - name: Add local CVMFS configuration (/etc/cvmfs/default.local)
+#        run: echo "CVMFS_CLIENT_PROFILE=single" | tee /etc/cvmfs/default.local
+#
+#      - name: Mount the repositories
+#        #run: cvmfs_config setup
+#        run: mkdir -p /cvmfs/pilot.nessi.no && mount -t cvmfs pilot.nessi.no /cvmfs/pilot.nessi.no
+#
+#      - name: Test repository access
+#        run: ls /cvmfs/pilot.nessi.no/
 
   test-tar-package:
     needs: build-linux-packages
@@ -267,7 +267,8 @@ jobs:
 
   release:
     #needs: [build-linux-packages, build-macos-package, test-deb-package, test-rpm-package, test-macos-package, test-tar-package]
-    needs: [build-linux-packages, test-deb-package, test-rpm-package, test-tar-package]
+    #needs: [build-linux-packages, test-deb-package, test-rpm-package, test-tar-package]
+    needs: [build-linux-packages, test-deb-package, test-tar-package]
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     permissions:
