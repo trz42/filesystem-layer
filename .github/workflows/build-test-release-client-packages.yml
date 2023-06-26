@@ -49,25 +49,25 @@ jobs:
         uses: bpicode/github-action-fpm@e76c0e2166030f4691d641a700b16958c7d12f5d # v0.9.2
         with:
           fpm_args: "etc"
-          fpm_opts: "--debug -n cvmfs-config-eessi -v ${{ steps.get_version.outputs.version }} -t rpm -a all -s dir -C ./package --description 'CVMFS configuration package for EESSI.'"
+          fpm_opts: "--debug -n cvmfs-config-nessi -v ${{ steps.get_version.outputs.version }} -t rpm -a all -s dir -C ./package --description 'CVMFS configuration package for NESSI.'"
 
       - name: Build Deb package
         uses: bpicode/github-action-fpm@e76c0e2166030f4691d641a700b16958c7d12f5d # v0.9.2
         with:
           fpm_args: "etc"
-          fpm_opts: "--debug -n cvmfs-config-eessi -v ${{ steps.get_version.outputs.version }} -t deb -a all -s dir -C ./package --description 'CVMFS configuration package for EESSI.'"
+          fpm_opts: "--debug -n cvmfs-config-nessi -v ${{ steps.get_version.outputs.version }} -t deb -a all -s dir -C ./package --description 'CVMFS configuration package for NESSI.'"
 
       - name: Build tar package
         uses: bpicode/github-action-fpm@e76c0e2166030f4691d641a700b16958c7d12f5d # v0.9.2
         with:
           fpm_args: "etc"
-          fpm_opts: "--debug -n cvmfs-config-eessi-${{ steps.get_version.outputs.version }} -t tar -a all -s dir -C ./package --description 'CVMFS configuration package for EESSI.'"
+          fpm_opts: "--debug -n cvmfs-config-nessi-${{ steps.get_version.outputs.version }} -t tar -a all -s dir -C ./package --description 'CVMFS configuration package for NESSI.'"
 
       - name: Upload packages as build artifacts
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
         with:
           name: linux_packages
-          path: cvmfs-config-eessi*
+          path: cvmfs-config-nessi*
 
 #  build-macos-package:
 #    runs-on: macos-latest
@@ -131,7 +131,7 @@ jobs:
       - name: Install CVMFS client
         run: sudo apt-get update && sudo apt-get install cvmfs
 
-      - name: Download cvmfs-config-eessi package
+      - name: Download cvmfs-config-nessi package
         uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7 # v3.0.1
         with:
           name: linux_packages
@@ -140,7 +140,7 @@ jobs:
         id: find_filename
         shell: bash
         run: |
-          debfile="$(find . -name cvmfs-config-eessi*.deb)"
+          debfile="$(find . -name cvmfs-config-nessi*.deb)"
           echo ::set-output name=debfile::${debfile}
 
       - name: Install package
@@ -153,7 +153,7 @@ jobs:
         run: sudo cvmfs_config setup
 
       - name: Test repository access
-        run: ls /cvmfs/pilot.eessi-hpc.org/
+        run: ls /cvmfs/pilot.nessi.no/
 
   test-rpm-package:
     needs: build-linux-packages
@@ -169,7 +169,7 @@ jobs:
       - name: Install CVMFS client
         run: yum install -y cvmfs
 
-      - name: Download cvmfs-config-eessi package
+      - name: Download cvmfs-config-nessi package
         uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7 # v3.0.1
         with:
           name: linux_packages
@@ -178,7 +178,7 @@ jobs:
         id: find_filename
         shell: bash
         run: |
-          rpmfile="$(find . -name cvmfs-config-eessi*.rpm)"
+          rpmfile="$(find . -name cvmfs-config-nessi*.rpm)"
           echo ::set-output name=rpmfile::${rpmfile}
 
       - name: Install package
@@ -189,10 +189,10 @@ jobs:
 
       - name: Mount the repositories
         #run: cvmfs_config setup
-        run: mkdir -p /cvmfs/pilot.eessi-hpc.org && mount -t cvmfs pilot.eessi-hpc.org /cvmfs/pilot.eessi-hpc.org
+        run: mkdir -p /cvmfs/pilot.nessi.no && mount -t cvmfs pilot.nessi.no /cvmfs/pilot.nessi.no
 
       - name: Test repository access
-        run: ls /cvmfs/pilot.eessi-hpc.org/
+        run: ls /cvmfs/pilot.nessi.no/
 
   test-tar-package:
     needs: build-linux-packages
@@ -207,7 +207,7 @@ jobs:
       - name: Install CVMFS client
         run: sudo apt-get update && sudo apt-get install cvmfs
 
-      - name: Download cvmfs-config-eessi package
+      - name: Download cvmfs-config-nessi package
         uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7 # v3.0.1
         with:
           name: linux_packages
@@ -216,7 +216,7 @@ jobs:
         id: find_filename
         shell: bash
         run: |
-          tarfile="$(find . -name cvmfs-config-eessi*.tar)"
+          tarfile="$(find . -name cvmfs-config-nessi*.tar)"
           echo ::set-output name=tarfile::${tarfile}
 
       - name: Install package
@@ -229,7 +229,7 @@ jobs:
         run: sudo cvmfs_config setup
 
       - name: Test repository access
-        run: ls /cvmfs/pilot.eessi-hpc.org/
+        run: ls /cvmfs/pilot.nessi.no/
 
 #  test-macos-package:
 #    needs: build-macos-package
@@ -290,7 +290,7 @@ jobs:
         shell: bash
         run: |
           ls -1 -R .
-          echo ::set-output name=package_filenames::$(find ./build_artifacts -name cvmfs-config-eessi*)
+          echo ::set-output name=package_filenames::$(find ./build_artifacts -name cvmfs-config-nessi*)
 
       - uses: meeDamian/github-release@7ae19492500104f636b3fee4d8103af0fed36c8e # v2.0.3
         with:
@@ -326,9 +326,9 @@ jobs:
         shell: bash
         run: |
           sudo apt-get install rename
-          rename "s/([0-9]+.[0-9]+.[0-9]+)(-[0-9]+)?/latest/g" $(find ./build_artifacts -name cvmfs-config-eessi*)
+          rename "s/([0-9]+.[0-9]+.[0-9]+)(-[0-9]+)?/latest/g" $(find ./build_artifacts -name cvmfs-config-nessi*)
           ls -1 -R ./build_artifacts
-          echo ::set-output name=package_filenames::$(find ./build_artifacts -name cvmfs-config-eessi*latest*)
+          echo ::set-output name=package_filenames::$(find ./build_artifacts -name cvmfs-config-nessi*latest*)
 
       - name: Delete any previous tag/release named "latest"
         uses: dev-drprasad/delete-tag-and-release@085c6969f18bad0de1b9f3fe6692a3cd01f64fe5 # v0.2.0
@@ -346,6 +346,6 @@ jobs:
           body: |
             Filesystem Layer release ${{ steps.find_version.outputs.version }} (see: https://github.com/${{github.repository}}/releases/tag/${{ steps.find_version.outputs.version }})
 
-            This `latest` tag is a moving tag that is updated automatically for each release, and provides easy access to the latest `cvmfs-config-eessi` packages.
+            This `latest` tag is a moving tag that is updated automatically for each release, and provides easy access to the latest `cvmfs-config-nessi` packages.
           files: ${{ steps.find_filenames.outputs.package_filenames }}
           gzip: false
