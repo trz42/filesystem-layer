@@ -36,20 +36,20 @@ jobs:
       - name: Make symlink to group_vars
         run: ln -s inventory/group_vars
 
-      #- name: Prepare package source
-      #  uses: roles-ansible/check-ansible-debian-stable-action@bc4b37806481d66df213c1a8d5c59495ed7801f0
-      #  with:
-      #    targets: "./prepare-client-packages.yml"
-      #    hosts: "localhost"
+      - name: Prepare package source
+        uses: roles-ansible/check-ansible-debian-stable-action@bc4b37806481d66df213c1a8d5c59495ed7801f0
+        with:
+          targets: "./prepare-client-packages.yml"
+          hosts: "localhost"
 
 # We probably should loop over the set {rpm,deb,osxpkg} to create packages, but
 # it will make debugging more annoying.
 
-      # - name: Build RPM package
-      #   uses: bpicode/github-action-fpm@e76c0e2166030f4691d641a700b16958c7d12f5d # v0.9.2
-      #   with:
-      #     fpm_args: "etc"
-      #     fpm_opts: "--debug -n cvmfs-config-nessi -v ${{ steps.get_version.outputs.version }} -t rpm -a all -s dir -C ./package --description 'CVMFS configuration package for NESSI.'"
+      - name: Build RPM package
+        uses: bpicode/github-action-fpm@e76c0e2166030f4691d641a700b16958c7d12f5d # v0.9.2
+        with:
+          fpm_args: "etc"
+          fpm_opts: "--debug -n cvmfs-config-nessi -v ${{ steps.get_version.outputs.version }} -t rpm -a all -s dir -C ./package --description 'CVMFS configuration package for NESSI.'"
 
       - name: Build Deb package
         uses: bpicode/github-action-fpm@e76c0e2166030f4691d641a700b16958c7d12f5d # v0.9.2
