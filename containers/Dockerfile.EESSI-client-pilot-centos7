@@ -28,7 +28,7 @@ RUN yum install -y sudo vim openssh-clients lsof
 RUN yum install -y /root/rpmbuild/RPMS/$(uname -m)/cvmfs-${cvmfsversion}-1.el7.$(uname -m).rpm \
                    /root/rpmbuild/RPMS/$(uname -m)/cvmfs-fuse3-${cvmfsversion}-1.el7.$(uname -m).rpm \
                    http://ecsft.cern.ch/dist/cvmfs/cvmfs-config/cvmfs-config-default-latest.noarch.rpm
-RUN yum install -y https://github.com/EESSI/filesystem-layer/releases/download/latest/cvmfs-config-eessi-latest.noarch.rpm
+RUN yum install -y https://github.com/NorESSI/filesystem-layer/releases/download/latest/cvmfs-config-eessi-latest.noarch.rpm
 
 # download binary for specific version of fuse-overlayfs
 #RUN curl -L -o /usr/local/bin/fuse-overlayfs https://github.com/containers/fuse-overlayfs/releases/download/v${fuseoverlayfsversion}/fuse-overlayfs-$(uname -m) \
@@ -38,6 +38,6 @@ RUN echo 'CVMFS_QUOTA_LIMIT=10000' > /etc/cvmfs/default.local \
   && echo 'CVMFS_CLIENT_PROFILE="single"' >> /etc/cvmfs/default.local \
   && echo 'CVMFS_HIDE_MAGIC_XATTRS=yes' >> /etc/cvmfs/default.local
 
-RUN mkdir -p /cvmfs/pilot.eessi-hpc.org
+RUN mkdir -p /cvmfs/pilot.nessi.no
 
 RUN useradd -ms /bin/bash eessi

@@ -3,9 +3,9 @@
 - name: Prepare Deb and RPM packages
   hosts: localhost
   vars:
-    package_vendor: EESSI
-    package_maintainer: EESSI <eessi@list.rug.nl>
-    package_description: CVMFS configuration package for EESSI.
+    package_vendor: NESSI
+    package_maintainer: NESSI <support@nessi.no>
+    package_description: CVMFS configuration package for NESSI.
     package_source_dir: "{{ lookup('env', 'GITHUB_WORKSPACE') | default('/tmp', True) }}/package"
   tasks:
     - name: Check the number of defined domains (should be one!)
@@ -30,20 +30,20 @@
         - "{{ package_source_dir }}/etc/cvmfs/keys/{{ eessi_domain }}"
         - "{{ package_source_dir }}/etc/cvmfs/domain.d"
 
-    - name: Make EESSI CVMFS public key files
+    - name: Make NESSI CVMFS public key files
       copy:
         content: "{{ item.key }}"
         dest: "{{ package_source_dir }}{{ item.path }}"
         mode: 0644
       with_items: "{{ eessi_cvmfs_keys }}"
 
-    - name: Make EESSI CVMFS domain configuration file
+    - name: Make NESSI CVMFS domain configuration file
       copy:
         content: |
-          # Stratum 1 servers for the eessi-hpc.org domain
+          # Stratum 1 servers for the nessi.no domain
           CVMFS_SERVER_URL="{{ item.urls|join(';') }}"
 
-          # Public keys for the eessi-hpc.org domain
+          # Public keys for the nessi.no domain
           CVMFS_KEYS_DIR="/etc/cvmfs/keys/{{ item.domain }}"
 
           # Enable or disable the Geo API, based on the configuration file

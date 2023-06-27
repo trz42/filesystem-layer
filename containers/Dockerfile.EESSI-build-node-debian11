@@ -32,13 +32,14 @@ RUN echo 'CVMFS_QUOTA_LIMIT=10000' > /etc/cvmfs/default.local \
   && echo 'CVMFS_CLIENT_PROFILE="single"' >> /etc/cvmfs/default.local \
   && echo 'CVMFS_HIDE_MAGIC_XATTRS=yes' >> /etc/cvmfs/default.local
 
-RUN mkdir -p /cvmfs/pilot.eessi-hpc.org
+RUN mkdir -p /cvmfs/pilot.nessi.no
 
 RUN useradd -ms /bin/bash eessi
 
 # stick to awscli v1.x, 2.x is not available through PyPI (see https://github.com/aws/aws-cli/issues/4947)
 RUN pip3 install archspec awscli==${awscliversion}
 
-RUN curl -OL https://raw.githubusercontent.com/EESSI/infrastructure/main/eessi-upload-to-staging \
+RUN curl -OL
+https://raw.githubusercontent.com/NorESSI/eessi-bot-software-layer/main/scripts/eessi-upload-to-staging \
   && mv eessi-upload-to-staging /usr/bin \
   && chmod a+x /usr/bin/eessi-upload-to-staging

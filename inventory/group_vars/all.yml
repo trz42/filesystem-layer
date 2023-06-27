@@ -1,14 +1,14 @@
 ---
-# vars file for eessi project
+# vars file for nessi project
 
-# Automatically configure EESSI CVMFS repos.
+# Automatically configure NESSI CVMFS repos.
 eessi_cvmfs_repos_enabled: true
 
 # Email address for the project.
-eessi_email: eessi@list.rug.nl
+eessi_email: support@nessi.no
 
 #
-# Defaults for eessi-hpc.org repos.
+# Defaults for nessi.no repos.
 #
 
 # We do not use a config repo anymore.
@@ -18,96 +18,93 @@ eessi_cvmfs_config_repo: {}
 # /etc/cvmfs/keys/*.pub
 # Note: you first have to run the stratum0.yml playbook once to generate the repositories and keys.
 eessi_cvmfs_keys:
-  - path: /etc/cvmfs/keys/eessi-hpc.org/cvmfs-config.eessi-hpc.org.pub
+  # - path: /etc/cvmfs/keys/nessi.no/cvmfs-config.nessi.no.pub
+  #   key: |
+  #    -----BEGIN PUBLIC KEY-----
+  #    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqoTBc/Eksr9ECEOoCzHA
+  #    F20UjePR7mJyWB13eTBXnjq7PLKKilfk2llLKetPIRMEmbvp97NiQ9ALe/tiGDzT
+  #    1Wg82Mf9oO4DNQYrTfE/MP5inIrMtSv1WnYJYV4Bgm24s8IhHXytIf1D4qt0x1v5
+  #    0yRui0dwaZrErWKRKufbJ6ehmEDHuVSEAujrORyig/jYFKVyTaCsXnmwFDJmX2Uw
+  #    RGCaf0M9ZLYs9t/SWA0s08rle5kH82hgBsIvUr7PLT7hbU407VK6+Y02tuxbI0JR
+  #    +hCt494UsFs3tchmTebpK+x3pVRXybQ66Qm1mQiaz+2VbUJdQEov4RCC5PcOmOOk
+  #    BwIDAQAB
+  #    -----END PUBLIC KEY-----
+  - path: /etc/cvmfs/keys/nessi.no/pilot.nessi.no.pub
     key: |
      -----BEGIN PUBLIC KEY-----
-     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqoTBc/Eksr9ECEOoCzHA
-     F20UjePR7mJyWB13eTBXnjq7PLKKilfk2llLKetPIRMEmbvp97NiQ9ALe/tiGDzT
-     1Wg82Mf9oO4DNQYrTfE/MP5inIrMtSv1WnYJYV4Bgm24s8IhHXytIf1D4qt0x1v5
-     0yRui0dwaZrErWKRKufbJ6ehmEDHuVSEAujrORyig/jYFKVyTaCsXnmwFDJmX2Uw
-     RGCaf0M9ZLYs9t/SWA0s08rle5kH82hgBsIvUr7PLT7hbU407VK6+Y02tuxbI0JR
-     +hCt494UsFs3tchmTebpK+x3pVRXybQ66Qm1mQiaz+2VbUJdQEov4RCC5PcOmOOk
-     BwIDAQAB
-     -----END PUBLIC KEY-----
-  - path: /etc/cvmfs/keys/eessi-hpc.org/pilot.eessi-hpc.org.pub
-    key: |
-     -----BEGIN PUBLIC KEY-----
-     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAommtaoqQ36Rb/cFnqUWg
-     8FoYCOjJWVBMQ4sVZ87oFRWehOUbcfy/ah85D9055HQws7i/hLNGJJAa7Es3E2o8
-     v8LtSlRdfR1A7b7LA6p3213HHz6dNU6I1riwtE2OP7/w4Q3+Agj1iRtW535GwzGo
-     4ZbewL8T1kbyaEm4HyefoitHXJthoPyTlYAhvAegIil1VJPhJZW+q/NWxnsd9QGJ
-     uAtbSICQg6mBJI50KiCBYmKHOAjH2W8qEnLWc7JoPoNvAHuMx1ya6YerBM5T9Esm
-     HJN0HHOVdRIwNjjPkV2jIqhJoI85no89v8/V45SFPVo+A7N0Cj4QdQrQTezpnlby
-     FQIDAQAB
+     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fCoxTEM5bJoOv6/JYl3
+     FuzcA5J0Dj6MTE2ltaNqpWNnscaPUZVNiXkPgUSepxx6Om12i6b7lHW2q7Vs3ua0
+     X+CWqccAQ1VUIh/bI33YG+6KsIYHJhDgU653aqodVo5O2Ei+DOZqwin9MQZ1+XDz
+     Vvfh3nEOq+z8XROIbXeBBzGgjSiXt+RWUh8WzKmaJamekPPFJQTkAO7XiSzlK9l7
+     OVRmsO0cswKIr0qoTk34o/JOMq75uxsqartoERw6Qw5qGxbTs7NduFTW/FaZgEiQ
+     UT5djm4zu+fCkivsIZOil4hfvCTVdcCq3z8L3UOhLLE2IbkPzebNo+a65DRDe+zf
+     7wIDAQAB
      -----END PUBLIC KEY-----
   # The following (duplicate) key can be removed after this PR has been merged:
   # https://github.com/galaxyproject/ansible-cvmfs/pull/32
-  - path: /etc/cvmfs/keys/eessi-hpc.org/data.eessi-hpc.org.pub
-    key: |
-     -----BEGIN PUBLIC KEY-----
-     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAommtaoqQ36Rb/cFnqUWg
-     8FoYCOjJWVBMQ4sVZ87oFRWehOUbcfy/ah85D9055HQws7i/hLNGJJAa7Es3E2o8
-     v8LtSlRdfR1A7b7LA6p3213HHz6dNU6I1riwtE2OP7/w4Q3+Agj1iRtW535GwzGo
-     4ZbewL8T1kbyaEm4HyefoitHXJthoPyTlYAhvAegIil1VJPhJZW+q/NWxnsd9QGJ
-     uAtbSICQg6mBJI50KiCBYmKHOAjH2W8qEnLWc7JoPoNvAHuMx1ya6YerBM5T9Esm
-     HJN0HHOVdRIwNjjPkV2jIqhJoI85no89v8/V45SFPVo+A7N0Cj4QdQrQTezpnlby
-     FQIDAQAB
-     -----END PUBLIC KEY-----
-  - path: /etc/cvmfs/keys/eessi-hpc.org/ci.eessi-hpc.org.pub
-    key: |
-     -----BEGIN PUBLIC KEY-----
-     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAommtaoqQ36Rb/cFnqUWg
-     8FoYCOjJWVBMQ4sVZ87oFRWehOUbcfy/ah85D9055HQws7i/hLNGJJAa7Es3E2o8
-     v8LtSlRdfR1A7b7LA6p3213HHz6dNU6I1riwtE2OP7/w4Q3+Agj1iRtW535GwzGo
-     4ZbewL8T1kbyaEm4HyefoitHXJthoPyTlYAhvAegIil1VJPhJZW+q/NWxnsd9QGJ
-     uAtbSICQg6mBJI50KiCBYmKHOAjH2W8qEnLWc7JoPoNvAHuMx1ya6YerBM5T9Esm
-     HJN0HHOVdRIwNjjPkV2jIqhJoI85no89v8/V45SFPVo+A7N0Cj4QdQrQTezpnlby
-     FQIDAQAB
-     -----END PUBLIC KEY-----
+  # - path: /etc/cvmfs/keys/nessi.no/data.nessi.no.pub
+  #   key: |
+  #   -----BEGIN PUBLIC KEY-----
+  #   MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fCoxTEM5bJoOv6/JYl3
+  #   FuzcA5J0Dj6MTE2ltaNqpWNnscaPUZVNiXkPgUSepxx6Om12i6b7lHW2q7Vs3ua0
+  #   X+CWqccAQ1VUIh/bI33YG+6KsIYHJhDgU653aqodVo5O2Ei+DOZqwin9MQZ1+XDz
+  #   Vvfh3nEOq+z8XROIbXeBBzGgjSiXt+RWUh8WzKmaJamekPPFJQTkAO7XiSzlK9l7
+  #   OVRmsO0cswKIr0qoTk34o/JOMq75uxsqartoERw6Qw5qGxbTs7NduFTW/FaZgEiQ
+  #   UT5djm4zu+fCkivsIZOil4hfvCTVdcCq3z8L3UOhLLE2IbkPzebNo+a65DRDe+zf
+  #   7wIDAQAB
+  #   -----END PUBLIC KEY-----
+  # - path: /etc/cvmfs/keys/nessi.no/ci.nessi.no.pub
+  #   key: |
+  #    -----BEGIN PUBLIC KEY-----
+  #    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwE+JHDBLKzgU5t1Xs+uk
+  #    hLGmhB2aj1+ouSS5xGIhpASVddbuO/Wf+Xa51iU5Bp6zsYiUJt0pSAM1JT5/mCPL
+  #    Dkww+4OJ1Dq36q1lK/2tk4w4cfjRZPT010SU2J0BKTal1k0HqVTHhRZOOv9eRNv7
+  #    M0nh4u6F2YE/H06TdknWkPBZOned3VjqPpxQguQ6TVRaK/P4ihSzgqMI3hyg4kvW
+  #    6foB/PMtDxVdLkeDCkh2izn9Rq57FY391npZt3trEosgyd81hGVpBMnD8LBzRCg7
+  #    OP20VFQ/dPDq0tjQqZSlhLpfnAaYuGcEV4lJD1knwpVuITIqaLxYHp/PtdvqlMTo
+  #    LwIDAQAB
+  #    -----END PUBLIC KEY-----
 
 # URLs for all the Stratum 1 servers.
 eessi_cvmfs_server_urls:
-  - domain: eessi-hpc.org
+  - domain: nessi.no
     use_geoapi: true
     urls:
-      - "http://rug-nl.stratum1.cvmfs.eessi-infra.org/cvmfs/@fqrn@"
-      - "http://bgo-no.stratum1.cvmfs.eessi-infra.org/cvmfs/@fqrn@"
-      - "http://azure-us-east1.stratum1.cvmfs.eessi-infra.org/cvmfs/@fqrn@"
-      - "http://aws-eu-west1.stratum1.cvmfs.eessi-infra.org/cvmfs/@fqrn@"
+      - "http://stratum1.nessi.no/cvmfs/@fqrn@"
 
 # Configuration of all the repositories.
 eessi_cvmfs_repositories:
-  - repository: pilot.eessi-hpc.org
-    stratum0: rug-nl.stratum0.cvmfs.eessi-infra.org
+  - repository: pilot.nessi.no
+    stratum0: stratum0.nessi.no
     owner: "{{ cvmfs_repo_owner | default('root') }}"
-    key_dir: /etc/cvmfs/keys/eessi-hpc.org
+    key_dir: /etc/cvmfs/keys/nessi.no
     server_options:
       - CVMFS_AUTO_GC=false
       - CVMFS_AUTO_TAG_TIMESPAN="30 days ago"
       - CVMFS_GARBAGE_COLLECTION=true
     client_options: []
     use_for_ci: false
-  - repository: data.eessi-hpc.org
-    stratum0: rug-nl.stratum0.cvmfs.eessi-infra.org
-    owner: "{{ cvmfs_repo_owner | default('root') }}"
-    key_dir: /etc/cvmfs/keys/eessi-hpc.org
-    server_options:
-      - CVMFS_AUTO_GC=false
-      - CVMFS_AUTO_TAG_TIMESPAN="30 days ago"
-      - CVMFS_GARBAGE_COLLECTION=true
-    client_options: []
-    use_for_ci: false
-  - repository: ci.eessi-hpc.org
-    stratum0: rug-nl.stratum0.cvmfs.eessi-infra.org
-    owner: "{{ cvmfs_repo_owner | default('root') }}"
-    key_dir: /etc/cvmfs/keys/eessi-hpc.org
-    server_options:
-      - CVMFS_AUTO_GC=false
-      - CVMFS_GARBAGE_COLLECTION=true
-    client_options: []
-    use_for_ci: true
+  # - repository: data.nessi.no
+  #   stratum0: stratum0.nessi.no
+  #   owner: "{{ cvmfs_repo_owner | default('root') }}"
+  #   key_dir: /etc/cvmfs/keys/nessi.no
+  #   server_options:
+  #     - CVMFS_AUTO_GC=false
+  #     - CVMFS_AUTO_TAG_TIMESPAN="30 days ago"
+  #     - CVMFS_GARBAGE_COLLECTION=true
+  #   client_options: []
+  #   use_for_ci: false
+  # - repository: ci.nessi.no
+  #   stratum0: stratum0.nessi.no
+  #   owner: "{{ cvmfs_repo_owner | default('root') }}"
+  #   key_dir: /etc/cvmfs/keys/nessi.no
+  #   server_options:
+  #     - CVMFS_AUTO_GC=false
+  #     - CVMFS_GARBAGE_COLLECTION=true
+  #   client_options: []
+  #   use_for_ci: true
 
-# Override all the Galaxy defaults by our EESSI defaults.
+# Override all the Galaxy defaults by our NESSI defaults.
 # This is required, beucase the galaxy_* variables are used inside the Ansible tasks.
 galaxy_cvmfs_config_repo: "{{ eessi_cvmfs_config_repo }}"
 galaxy_cvmfs_keys: "{{ eessi_cvmfs_keys }}"
