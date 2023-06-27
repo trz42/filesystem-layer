@@ -18,17 +18,17 @@ eessi_cvmfs_config_repo: {}
 # /etc/cvmfs/keys/*.pub
 # Note: you first have to run the stratum0.yml playbook once to generate the repositories and keys.
 eessi_cvmfs_keys:
-  #- path: /etc/cvmfs/keys/nessi.no/cvmfs-config.nessi.no.pub
-  #  key: |
-  #   -----BEGIN PUBLIC KEY-----
-  #   MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqoTBc/Eksr9ECEOoCzHA
-  #   F20UjePR7mJyWB13eTBXnjq7PLKKilfk2llLKetPIRMEmbvp97NiQ9ALe/tiGDzT
-  #   1Wg82Mf9oO4DNQYrTfE/MP5inIrMtSv1WnYJYV4Bgm24s8IhHXytIf1D4qt0x1v5
-  #   0yRui0dwaZrErWKRKufbJ6ehmEDHuVSEAujrORyig/jYFKVyTaCsXnmwFDJmX2Uw
-  #   RGCaf0M9ZLYs9t/SWA0s08rle5kH82hgBsIvUr7PLT7hbU407VK6+Y02tuxbI0JR
-  #   +hCt494UsFs3tchmTebpK+x3pVRXybQ66Qm1mQiaz+2VbUJdQEov4RCC5PcOmOOk
-  #   BwIDAQAB
-  #   -----END PUBLIC KEY-----
+  # - path: /etc/cvmfs/keys/nessi.no/cvmfs-config.nessi.no.pub
+  #   key: |
+  #    -----BEGIN PUBLIC KEY-----
+  #    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqoTBc/Eksr9ECEOoCzHA
+  #    F20UjePR7mJyWB13eTBXnjq7PLKKilfk2llLKetPIRMEmbvp97NiQ9ALe/tiGDzT
+  #    1Wg82Mf9oO4DNQYrTfE/MP5inIrMtSv1WnYJYV4Bgm24s8IhHXytIf1D4qt0x1v5
+  #    0yRui0dwaZrErWKRKufbJ6ehmEDHuVSEAujrORyig/jYFKVyTaCsXnmwFDJmX2Uw
+  #    RGCaf0M9ZLYs9t/SWA0s08rle5kH82hgBsIvUr7PLT7hbU407VK6+Y02tuxbI0JR
+  #    +hCt494UsFs3tchmTebpK+x3pVRXybQ66Qm1mQiaz+2VbUJdQEov4RCC5PcOmOOk
+  #    BwIDAQAB
+  #    -----END PUBLIC KEY-----
   - path: /etc/cvmfs/keys/nessi.no/pilot.nessi.no.pub
     key: |
      -----BEGIN PUBLIC KEY-----
@@ -53,17 +53,17 @@ eessi_cvmfs_keys:
   #   UT5djm4zu+fCkivsIZOil4hfvCTVdcCq3z8L3UOhLLE2IbkPzebNo+a65DRDe+zf
   #   7wIDAQAB
   #   -----END PUBLIC KEY-----
-  #- path: /etc/cvmfs/keys/nessi.no/ci.nessi.no.pub
-  #  key: |
-  #   -----BEGIN PUBLIC KEY-----
-  #   MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwE+JHDBLKzgU5t1Xs+uk
-  #   hLGmhB2aj1+ouSS5xGIhpASVddbuO/Wf+Xa51iU5Bp6zsYiUJt0pSAM1JT5/mCPL
-  #   Dkww+4OJ1Dq36q1lK/2tk4w4cfjRZPT010SU2J0BKTal1k0HqVTHhRZOOv9eRNv7
-  #   M0nh4u6F2YE/H06TdknWkPBZOned3VjqPpxQguQ6TVRaK/P4ihSzgqMI3hyg4kvW
-  #   6foB/PMtDxVdLkeDCkh2izn9Rq57FY391npZt3trEosgyd81hGVpBMnD8LBzRCg7
-  #   OP20VFQ/dPDq0tjQqZSlhLpfnAaYuGcEV4lJD1knwpVuITIqaLxYHp/PtdvqlMTo
-  #   LwIDAQAB
-  #   -----END PUBLIC KEY-----
+  # - path: /etc/cvmfs/keys/nessi.no/ci.nessi.no.pub
+  #   key: |
+  #    -----BEGIN PUBLIC KEY-----
+  #    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwE+JHDBLKzgU5t1Xs+uk
+  #    hLGmhB2aj1+ouSS5xGIhpASVddbuO/Wf+Xa51iU5Bp6zsYiUJt0pSAM1JT5/mCPL
+  #    Dkww+4OJ1Dq36q1lK/2tk4w4cfjRZPT010SU2J0BKTal1k0HqVTHhRZOOv9eRNv7
+  #    M0nh4u6F2YE/H06TdknWkPBZOned3VjqPpxQguQ6TVRaK/P4ihSzgqMI3hyg4kvW
+  #    6foB/PMtDxVdLkeDCkh2izn9Rq57FY391npZt3trEosgyd81hGVpBMnD8LBzRCg7
+  #    OP20VFQ/dPDq0tjQqZSlhLpfnAaYuGcEV4lJD1knwpVuITIqaLxYHp/PtdvqlMTo
+  #    LwIDAQAB
+  #    -----END PUBLIC KEY-----
 
 # URLs for all the Stratum 1 servers.
 eessi_cvmfs_server_urls:
@@ -84,25 +84,25 @@ eessi_cvmfs_repositories:
       - CVMFS_GARBAGE_COLLECTION=true
     client_options: []
     use_for_ci: false
-  #- repository: data.nessi.no
-  #  stratum0: stratum0.nessi.no
-  #  owner: "{{ cvmfs_repo_owner | default('root') }}"
-  #  key_dir: /etc/cvmfs/keys/nessi.no
-  #  server_options:
-  #    - CVMFS_AUTO_GC=false
-  #    - CVMFS_AUTO_TAG_TIMESPAN="30 days ago"
-  #    - CVMFS_GARBAGE_COLLECTION=true
-  #  client_options: []
-  #  use_for_ci: false
-  #- repository: ci.nessi.no
-  #  stratum0: stratum0.nessi.no
-  #  owner: "{{ cvmfs_repo_owner | default('root') }}"
-  #  key_dir: /etc/cvmfs/keys/nessi.no
-  #  server_options:
-  #    - CVMFS_AUTO_GC=false
-  #    - CVMFS_GARBAGE_COLLECTION=true
-  #  client_options: []
-  #  use_for_ci: true
+  # - repository: data.nessi.no
+  #   stratum0: stratum0.nessi.no
+  #   owner: "{{ cvmfs_repo_owner | default('root') }}"
+  #   key_dir: /etc/cvmfs/keys/nessi.no
+  #   server_options:
+  #     - CVMFS_AUTO_GC=false
+  #     - CVMFS_AUTO_TAG_TIMESPAN="30 days ago"
+  #     - CVMFS_GARBAGE_COLLECTION=true
+  #   client_options: []
+  #   use_for_ci: false
+  # - repository: ci.nessi.no
+  #   stratum0: stratum0.nessi.no
+  #   owner: "{{ cvmfs_repo_owner | default('root') }}"
+  #   key_dir: /etc/cvmfs/keys/nessi.no
+  #   server_options:
+  #     - CVMFS_AUTO_GC=false
+  #     - CVMFS_GARBAGE_COLLECTION=true
+  #   client_options: []
+  #   use_for_ci: true
 
 # Override all the Galaxy defaults by our NESSI defaults.
 # This is required, beucase the galaxy_* variables are used inside the Ansible tasks.
