@@ -18,6 +18,13 @@ jobs:
   build-linux-packages:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Ansible
+        run: |
+          sudo apt update --yes
+          sudo apt install --yes software-properties-common
+          sudo add-apt-repository --yes --update ppa:ansible/ansible
+          sudo apt install --yes ansible
+
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
 
@@ -36,11 +43,13 @@ jobs:
       - name: Make symlink to group_vars
         run: ln -s inventory/group_vars
 
+      #  uses: roles-ansible/check-ansible-debian-stable-action@bc4b37806481d66df213c1a8d5c59495ed7801f0
       - name: Prepare package source
-        uses: roles-ansible/check-ansible-debian-stable-action@bc4b37806481d66df213c1a8d5c59495ed7801f0
+        uses: dawidd6/action-ansible-playbook@5d970176ea4bfd99a3f5004d48e293fe0994eda1 # v2.6.1
         with:
-          targets: "./prepare-client-packages.yml"
-          hosts: "localhost"
+          playbook: "./prepare-client-packages.yml"
+          options: |
+            --inventory "localhost"
 
 # We probably should loop over the set {rpm,deb,osxpkg} to create packages, but
 # it will make debugging more annoying.
