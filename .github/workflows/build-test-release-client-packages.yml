@@ -48,8 +48,8 @@ jobs:
         uses: dawidd6/action-ansible-playbook@5d970176ea4bfd99a3f5004d48e293fe0994eda1 # v2.6.1
         with:
           playbook: "./prepare-client-packages.yml"
-          options: |
-            --inventory "localhost"
+        #  options: |
+        #    --inventory "localhost"
 
 # We probably should loop over the set {rpm,deb,osxpkg} to create packages, but
 # it will make debugging more annoying.
