@@ -311,6 +311,7 @@ jobs:
             Filesystem Layer release ${{ steps.find_version.outputs.version }}
           files: ${{ steps.find_filenames.outputs.package_filenames }}
           gzip: false
+          allow_override: true
 
   release-latest:
     needs: [release] # only run when the previous step (the actual release) was successful
