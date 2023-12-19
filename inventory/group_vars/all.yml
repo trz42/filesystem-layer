@@ -5,7 +5,7 @@
 eessi_cvmfs_repos_enabled: true
 
 # Email address for the project.
-eessi_email: support@nessi.no
+eessi_email: thomas.roblitz@uib.no
 
 #
 # Defaults for nessi.no repos.
@@ -18,17 +18,6 @@ eessi_cvmfs_config_repo: {}
 # /etc/cvmfs/keys/*.pub
 # Note: you first have to run the stratum0.yml playbook once to generate the repositories and keys.
 eessi_cvmfs_keys:
-  # - path: /etc/cvmfs/keys/nessi.no/cvmfs-config.nessi.no.pub
-  #   key: |
-  #    -----BEGIN PUBLIC KEY-----
-  #    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqoTBc/Eksr9ECEOoCzHA
-  #    F20UjePR7mJyWB13eTBXnjq7PLKKilfk2llLKetPIRMEmbvp97NiQ9ALe/tiGDzT
-  #    1Wg82Mf9oO4DNQYrTfE/MP5inIrMtSv1WnYJYV4Bgm24s8IhHXytIf1D4qt0x1v5
-  #    0yRui0dwaZrErWKRKufbJ6ehmEDHuVSEAujrORyig/jYFKVyTaCsXnmwFDJmX2Uw
-  #    RGCaf0M9ZLYs9t/SWA0s08rle5kH82hgBsIvUr7PLT7hbU407VK6+Y02tuxbI0JR
-  #    +hCt494UsFs3tchmTebpK+x3pVRXybQ66Qm1mQiaz+2VbUJdQEov4RCC5PcOmOOk
-  #    BwIDAQAB
-  #    -----END PUBLIC KEY-----
   - path: /etc/cvmfs/keys/nessi.no/pilot.nessi.no.pub
     key: |
      -----BEGIN PUBLIC KEY-----
@@ -40,37 +29,14 @@ eessi_cvmfs_keys:
      UT5djm4zu+fCkivsIZOil4hfvCTVdcCq3z8L3UOhLLE2IbkPzebNo+a65DRDe+zf
      7wIDAQAB
      -----END PUBLIC KEY-----
-  # The following (duplicate) key can be removed after this PR has been merged:
-  # https://github.com/galaxyproject/ansible-cvmfs/pull/32
-  # - path: /etc/cvmfs/keys/nessi.no/data.nessi.no.pub
-  #   key: |
-  #   -----BEGIN PUBLIC KEY-----
-  #   MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fCoxTEM5bJoOv6/JYl3
-  #   FuzcA5J0Dj6MTE2ltaNqpWNnscaPUZVNiXkPgUSepxx6Om12i6b7lHW2q7Vs3ua0
-  #   X+CWqccAQ1VUIh/bI33YG+6KsIYHJhDgU653aqodVo5O2Ei+DOZqwin9MQZ1+XDz
-  #   Vvfh3nEOq+z8XROIbXeBBzGgjSiXt+RWUh8WzKmaJamekPPFJQTkAO7XiSzlK9l7
-  #   OVRmsO0cswKIr0qoTk34o/JOMq75uxsqartoERw6Qw5qGxbTs7NduFTW/FaZgEiQ
-  #   UT5djm4zu+fCkivsIZOil4hfvCTVdcCq3z8L3UOhLLE2IbkPzebNo+a65DRDe+zf
-  #   7wIDAQAB
-  #   -----END PUBLIC KEY-----
-  # - path: /etc/cvmfs/keys/nessi.no/ci.nessi.no.pub
-  #   key: |
-  #    -----BEGIN PUBLIC KEY-----
-  #    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwE+JHDBLKzgU5t1Xs+uk
-  #    hLGmhB2aj1+ouSS5xGIhpASVddbuO/Wf+Xa51iU5Bp6zsYiUJt0pSAM1JT5/mCPL
-  #    Dkww+4OJ1Dq36q1lK/2tk4w4cfjRZPT010SU2J0BKTal1k0HqVTHhRZOOv9eRNv7
-  #    M0nh4u6F2YE/H06TdknWkPBZOned3VjqPpxQguQ6TVRaK/P4ihSzgqMI3hyg4kvW
-  #    6foB/PMtDxVdLkeDCkh2izn9Rq57FY391npZt3trEosgyd81hGVpBMnD8LBzRCg7
-  #    OP20VFQ/dPDq0tjQqZSlhLpfnAaYuGcEV4lJD1knwpVuITIqaLxYHp/PtdvqlMTo
-  #    LwIDAQAB
-  #    -----END PUBLIC KEY-----
 
 # URLs for all the Stratum 1 servers.
 eessi_cvmfs_server_urls:
   - domain: nessi.no
     use_geoapi: true
     urls:
-      - "http://stratum1.nessi.no/cvmfs/@fqrn@"
+      - "http://stratum1-a.nessi.no/cvmfs/@fqrn@"
+      - "http://stratum1-b.nessi.no/cvmfs/@fqrn@"
 
 # Configuration of all the repositories.
 eessi_cvmfs_repositories:
@@ -84,25 +50,15 @@ eessi_cvmfs_repositories:
       - CVMFS_GARBAGE_COLLECTION=true
     client_options: []
     use_for_ci: false
-  # - repository: data.nessi.no
-  #   stratum0: stratum0.nessi.no
-  #   owner: "{{ cvmfs_repo_owner | default('root') }}"
-  #   key_dir: /etc/cvmfs/keys/nessi.no
-  #   server_options:
-  #     - CVMFS_AUTO_GC=false
-  #     - CVMFS_AUTO_TAG_TIMESPAN="30 days ago"
-  #     - CVMFS_GARBAGE_COLLECTION=true
-  #   client_options: []
-  #   use_for_ci: false
-  # - repository: ci.nessi.no
-  #   stratum0: stratum0.nessi.no
-  #   owner: "{{ cvmfs_repo_owner | default('root') }}"
-  #   key_dir: /etc/cvmfs/keys/nessi.no
-  #   server_options:
-  #     - CVMFS_AUTO_GC=false
-  #     - CVMFS_GARBAGE_COLLECTION=true
-  #   client_options: []
-  #   use_for_ci: true
+    description: "Repository that contains the NESSI software stack."
+
+# Meta information for CVMFS Stratum servers
+cvmfs_server_meta_administrator: "NESSI CVMFS Administrators"
+cvmfs_server_meta_email: "{{ eessi_email }}"
+cvmfs_server_meta_organisation: "NESSI"
+cvmfs_server_meta_custom:
+  _comment: "See https://documentation.sigma2.no/index.html"
+cvmfs_server_meta_website: "https://documentation.sigma2.no/index.html"
 
 # Override all the Galaxy defaults by our NESSI defaults.
 # This is required, beucase the galaxy_* variables are used inside the Ansible tasks.
