@@ -4,7 +4,7 @@
   hosts: localhost
   vars:
     package_vendor: NESSI
-    package_maintainer: NESSI <support@nessi.no>
+    package_maintainer: NESSI <thomas.roblitz@uib.no>
     package_description: CVMFS configuration package for NESSI.
     package_source_dir: "{{ lookup('env', 'GITHUB_WORKSPACE') | default('/tmp', True) }}/package"
   tasks:
