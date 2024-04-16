@@ -2,6 +2,32 @@ import hashlib
 import json
 import requests
 
+from shared_vars import gh_comment_cache, gh_pr_cache, gh_repo_cache
+
+
+def get_gh_repo(full_repo_name, github_instance):
+    """Return and cache pygithub.repository object for full_repo_name."""
+    if full_repo_name not in gh_repo_cache:
+        repo = github_instance.get_repo(full_repo_name)
+        gh_repo_cache[full_repo_name] = repo
+    return gh_repo_cache[full_repo_name]
+
+
+def get_gh_pr(pr_number, repo_instance):
+    """Return and cache pygithub.pull_request object for pr_number."""
+    if pr_number not in gh_pr_cache:
+        pr = repo_instance.get_pull(int(pr_number))
+        gh_pr_cache[pr_number] = pr
+    return gh_pr_cache[pr_number]
+
+
+def get_gh_comment(pr_comment_id, pr_instance):
+    """Return and cache pygithub.issue_comment object for pr_comment_id."""
+    if pr_comment_id not in gh_comment_cache:
+        comment = pr_instance.get_issue_comment(int(pr_comment_id))
+        gh_comment_cache[pr_comment_id] = comment
+    return gh_comment_cache[pr_comment_id]
+
 
 def send_slack_message(webhook, msg):
     """Send a Slack message."""
